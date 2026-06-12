@@ -1,0 +1,21 @@
+Titulo del proyecto: Control FANI Numerico
+Enlace de la pagina web publicada: completar despues del deploy
+Enlace del repositorio Git: completar despues de subir a GitHub
+Datos del estudiante: completar con apellidos y nombre
+
+Descripcion:
+Sistema interactivo de simulacion y analisis de Fenomenos Aereos No Identificados usando metodos numericos.
+
+Modulos incluidos:
+- Sistemas de ecuaciones lineales para triangulacion de radar.
+- Raices de ecuaciones para equilibrio termico.
+- Interpolacion de trayectoria.
+- Integracion numerica para desplazamiento acumulado.
+- Ecuaciones diferenciales para descenso.
+- Analisis de condicion ante perturbacion.
+- Modelo social por avistamiento masivo.
+
+Casos de estudio:
+- Interpolacion: t=1,5,10 y H=800,1200,2500 para estimar t=3.
+- EDO: H0=15000, perdida=1500, empuje=400 y zona critica=2000.
+- Raices: energia base 500 y radiacion 580.

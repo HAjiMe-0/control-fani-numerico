@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control FANI Numerico</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="orb orb-one"></div>
+  <div class="orb orb-two"></div>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">F</div>
+        <div>
+          <h1>FANI Lab</h1>
+          <span>Metodos Numericos</span>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#inicio" class="nav-link active" data-page="inicio">Inicio</a>
+        <a href="#sistemas" class="nav-link" data-page="sistemas">Radar 3D</a>
+        <a href="#raices" class="nav-link" data-page="raices">Raices</a>
+        <a href="#interpolacion" class="nav-link" data-page="interpolacion">Interpolacion</a>
+        <a href="#integracion" class="nav-link" data-page="integracion">Integracion</a>
+        <a href="#edo" class="nav-link" data-page="edo">EDO Descenso</a>
+        <a href="#condicion" class="nav-link" data-page="condicion">Condicion</a>
+        <a href="#social" class="nav-link" data-page="social">Modelo Social</a>
+        <a href="#casos" class="nav-link" data-page="casos">Pruebas</a>
+        <a href="#conclusiones" class="nav-link" data-page="conclusiones">Conclusion</a>
+      </nav>
+      <div class="mini-card">
+        <span>Estado</span>
+        <strong>Listo para evaluar</strong>
+        <p>Formularios, tablas y graficas en pantalla.</p>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section id="inicio" class="page active">
+        <div class="hero grid-two">
+          <div>
+            <span class="pill">Centro de control numerico</span>
+            <h2>Sistema Interactivo de Simulacion y Analisis FANI</h2>
+            <p>Plataforma web para analizar fenomenos aereos no identificados usando algebra lineal, raices, interpolacion, integracion numerica y ecuaciones diferenciales.</p>
+            <div class="hero-actions">
+              <button class="btn primary" data-go="raices">Probar raices</button>
+              <button class="btn" data-go="casos">Cargar casos</button>
+            </div>
+          </div>
+          <div class="radar-card">
+            <div class="radar-circle"><span></span></div>
+            <div class="telemetry">
+              <div><span>Altitud</span><strong>15000 m</strong></div>
+              <div><span>Radar</span><strong>3 estaciones</strong></div>
+              <div><span>Delta b</span><strong>5%</strong></div>
+            </div>
+          </div>
+        </div>
+        <div class="cards three">
+          <article class="card"><span class="tag">A</span><h3>Triangulacion</h3><p>Resuelve la posicion espacial x, y, z desde estaciones de radar.</p></article>
+          <article class="card"><span class="tag">B-E</span><h3>Movimiento y energia</h3><p>Simula descenso, umbral termico, trayectoria y distancia acumulada.</p></article>
+          <article class="card"><span class="tag">F-G</span><h3>Anomalias</h3><p>Evalua perturbaciones, condicion numerica y propagacion social.</p></article>
+        </div>
+      </section>
+
+      <section id="sistemas" class="page">
+        <header class="module-head">
+          <span class="pill">Escenario A</span>
+          <h2>Triangulacion de Radar y Localizacion Espacial</h2>
+          <p>Modelo Ax = b para estimar la posicion del objeto detectado por tres estaciones.</p>
+        </header>
+        <div class="grid-two">
+          <form class="panel" id="form-sistemas">
+            <h3>Datos del sistema</h3>
+            <div class="matrix-grid" id="matrix-a">
+              <input value="10"><input value="2"><input value="1">
+              <input value="1"><input value="9"><input value="2">
+              <input value="2"><input value="1"><input value="8">
+            </div>
+            <div class="input-row three-cols">
+              <label>b1<input id="b1" value="47"></label>
+              <label>b2<input id="b2" value="44"></label>
+              <label>b3<input id="b3" value="39"></label>
+            </div>
+            <div class="input-row three-cols">
+              <label>Metodo<select id="linear-method"><option value="jacobi">Jacobi</option><option value="seidel">Gauss Seidel</option><option value="sor">SOR</option><option value="lu">LU</option></select></label>
+              <label>Tolerancia<input id="linear-tol" value="0.0001"></label>
+              <label>Omega<input id="linear-omega" value="1.1"></label>
+            </div>
+            <button class="btn primary" type="submit">Resolver posicion</button>
+          </form>
+          <div class="panel result-panel">
+            <h3>Resultado</h3>
+            <div id="linear-result" class="result-grid"></div>
+            <div class="chart-box"><canvas id="linear-chart"></canvas></div>
+          </div>
+        </div>
+        <div class="panel"><h3>Tabla de iteraciones</h3><div id="linear-table" class="table-wrap"></div></div>
+      </section>
+
+      <section id="raices" class="page">
+        <header class="module-head">
+          <span class="pill">Escenario E</span>
+          <h2>Umbral de Propulsion y Equilibrio Termico</h2>
+          <p>Busca f(v)=0 para hallar el punto donde la radiacion y el aislamiento se equilibran.</p>
+        </header>
+        <div class="grid-two">
+          <form class="panel" id="form-raices">
+            <h3>Parametros de energia</h3>
+            <div class="input-row three-cols">
+              <label>Energia base<input id="root-base" value="500"></label>
+              <label>Radiacion<input id="root-target" value="580"></label>
+              <label>Coeficiente<input id="root-k" value="0.02"></label>
+            </div>
+            <div class="input-row three-cols">
+              <label>Metodo<select id="root-method"><option value="bisection">Biseccion</option><option value="newton">Newton Raphson</option><option value="secant">Secante</option></select></label>
+              <label>a o x0<input id="root-a" value="0"></label>
+              <label>b o x1<input id="root-b" value="120"></label>
+            </div>
+            <div class="input-row two-cols">
+              <label>Tolerancia<input id="root-tol" value="0.0001"></label>
+              <label>Iteraciones<input id="root-max" value="50"></label>
+            </div>
+            <button class="btn primary" type="submit">Calcular raiz</button>
+          </form>
+          <div class="panel result-panel">
+            <h3>Grafica de f(v)</h3>
+            <div id="root-result" class="result-grid"></div>
+            <div class="chart-box"><canvas id="root-chart"></canvas></div>
+          </div>
+        </div>
+        <div class="panel"><h3>Tabla de iteraciones</h3><div id="root-table" class="table-wrap"></div></div>
+      </section>
+
+      <section id="interpolacion" class="page">
+        <header class="module-head">
+          <span class="pill">Escenario C</span>
+          <h2>Reconstruccion de Ruta de Vuelo</h2>
+          <p>Usa Lagrange para estimar la altitud en un instante no registrado.</p>
+        </header>
+        <div class="grid-two">
+          <form class="panel" id="form-interpolacion">
+            <h3>Datos discretos</h3>
+            <label>Tiempos separados por coma<input id="interp-x" value="1,5,10"></label>
+            <label>Altitudes separadas por coma<input id="interp-y" value="800,1200,2500"></label>
+            <label>Tiempo a estimar<input id="interp-target" value="3"></label>
+            <button class="btn primary" type="submit">Interpolar</button>
+          </form>
+          <div class="panel result-panel">
+            <h3>Trayectoria continua</h3>
+            <div id="interp-result" class="result-grid"></div>
+            <div class="chart-box"><canvas id="interp-chart"></canvas></div>
+          </div>
+        </div>
+        <div class="panel"><h3>Tabla de puntos</h3><div id="interp-table" class="table-wrap"></div></div>
+      </section>
+
+      <section id="integracion" class="page">
+        <header class="module-head">
+          <span class="pill">Escenario D</span>
+          <h2>Desplazamiento Total Acumulado</h2>
+          <p>Calcula el area bajo la curva de velocidad variable para estimar distancia total.</p>
+        </header>
+        <div class="grid-two">
+          <form class="panel" id="form-integracion">
+            <h3>Velocidad variable</h3>
+            <label>Tiempos separados por coma<input id="integ-x" value="0,10,20,30,40,50,60"></label>
+            <label>Velocidades separadas por coma<input id="integ-y" value="80,125,150,210,260,310,360"></label>
+            <label>Metodo<select id="integ-method"><option value="trap">Trapecio</option><option value="simpson13">Simpson 1/3</option><option value="simpson38">Simpson 3/8</option></select></label>
+            <button class="btn primary" type="submit">Integrar distancia</button>
+          </form>
+          <div class="panel result-panel">
+            <h3>Area acumulada</h3>
+            <div id="integ-result" class="result-grid"></div>
+            <div class="chart-box"><canvas id="integ-chart"></canvas></div>
+          </div>
+        </div>
+        <div class="panel"><h3>Comparacion</h3><div id="integ-table" class="table-wrap"></div></div>
+      </section>
+
+      <section id="edo" class="page">
+        <header class="module-head">
+          <span class="pill">Escenario B</span>
+          <h2>Simulacion de Descenso Cinematico</h2>
+          <p>Resuelve dH/dt = empuje - perdida y calcula el arribo a una zona critica.</p>
+        </header>
+        <div class="grid-two">
+          <form class="panel" id="form-edo">
+            <h3>Datos del descenso</h3>
+            <div class="input-row three-cols">
+              <label>Altitud inicial<input id="ode-h0" value="15000"></label>
+              <label>Perdida fija<input id="ode-loss" value="1500"></label>
+              <label>Empuje<input id="ode-thrust" value="400"></label>
+            </div>
+            <div class="input-row three-cols">
+              <label>Zona critica<input id="ode-critical" value="2000"></label>
+              <label>Paso h<input id="ode-step" value="0.5"></label>
+              <label>Metodo<select id="ode-method"><option value="euler">Euler</option><option value="heun">Heun</option><option value="rk4">RK4</option></select></label>
+            </div>
+            <button class="btn primary" type="submit">Simular descenso</button>
+          </form>
+          <div class="panel result-panel">
+            <h3>Altitud vs tiempo</h3>
+            <div id="ode-result" class="result-grid"></div>
+            <div class="chart-box"><canvas id="ode-chart"></canvas></div>
+          </div>
+        </div>
+        <div class="panel"><h3>Tabla temporal</h3><div id="ode-table" class="table-wrap"></div></div>
+      </section>
+
+      <section id="condicion" class="page">
+        <header class="module-head">
+          <span class="pill">Escenario F</span>
+          <h2>Sistema Mal Condicionado por Distorsion Electromagnetica</h2>
+          <p>Calcula el numero de condicion y compara la posicion con delta b = 5%.</p>
+        </header>
+        <div class="grid-two">
+          <form class="panel" id="form-condicion">
+            <h3>Usar matriz del radar</h3>
+            <p class="muted">El modulo toma la matriz del escenario A y perturba el vector b.</p>
+            <label>Porcentaje de perturbacion<input id="cond-delta" value="5"></label>
+            <button class="btn primary" type="submit">Analizar estabilidad</button>
+          </form>
+          <div class="panel result-panel">
+            <h3>Estabilidad numerica</h3>
+            <div id="cond-result" class="result-grid"></div>
+            <div class="chart-box"><canvas id="cond-chart"></canvas></div>
+          </div>
+        </div>
+        <div class="panel"><h3>Comparacion de soluciones</h3><div id="cond-table" class="table-wrap"></div></div>
+      </section>
+
+      <section id="social" class="page">
+        <header class="module-head">
+          <span class="pill">Escenario G</span>
+          <h2>Dinamica Social por Avistamiento Masivo</h2>
+          <p>Proyecta escepticos, alarmados y medios mediante RK4 vectorizado.</p>
+        </header>
+        <div class="grid-two">
+          <form class="panel" id="form-social">
+            <h3>Parametros del modelo</h3>
+            <div class="input-row three-cols">
+              <label>E0<input id="soc-e" value="0.75"></label>
+              <label>A0<input id="soc-a0" value="0.20"></label>
+              <label>M0<input id="soc-m" value="0.05"></label>
+            </div>
+            <div class="input-row three-cols">
+              <label>a<input id="soc-alpha" value="0.45"></label>
+              <label>b<input id="soc-beta" value="0.18"></label>
+              <label>c<input id="soc-c" value="0.35"></label>
+            </div>
+            <div class="input-row three-cols">
+              <label>k<input id="soc-k" value="0.30"></label>
+              <label>r<input id="soc-r" value="0.22"></label>
+              <label>Paso<input id="soc-step" value="0.2"></label>
+            </div>
+            <button class="btn primary" type="submit">Simular modelo</button>
+          </form>
+          <div class="panel result-panel">
+            <h3>Evolucion social</h3>
+            <div id="soc-result" class="result-grid"></div>
+            <div class="chart-box"><canvas id="soc-chart"></canvas></div>
+          </div>
+        </div>
+        <div class="panel"><h3>Tabla RK4</h3><div id="soc-table" class="table-wrap"></div></div>
+      </section>
+
+      <section id="casos" class="page">
+        <header class="module-head">
+          <span class="pill">Casos obligatorios</span>
+          <h2>Pruebas automaticas para el evaluador</h2>
+          <p>Botones con los valores mandatorios del desafio.</p>
+        </header>
+        <div class="cards three">
+          <article class="card"><span class="tag">1</span><h3>Interpolacion</h3><p>t = 1, 5, 10; H = 800, 1200, 2500; estimar t = 3.</p><button class="btn primary" id="case-interp">Ejecutar</button></article>
+          <article class="card"><span class="tag">2</span><h3>EDO</h3><p>H0=15000, perdida=1500, empuje=400, zona critica=2000.</p><button class="btn primary" id="case-ode">Ejecutar</button></article>
+          <article class="card"><span class="tag">3</span><h3>Raices</h3><p>Energia base 500 y radiacion 580 para hallar el punto de quiebre.</p><button class="btn primary" id="case-root">Ejecutar</button></article>
+        </div>
+        <div class="panel"><h3>Resultado de pruebas</h3><div id="case-result" class="table-wrap"></div></div>
+      </section>
+
+      <section id="conclusiones" class="page">
+        <header class="module-head">
+          <span class="pill">Cierre academico</span>
+          <h2>Conclusiones y limites del modelo</h2>
+          <p>Los metodos numericos permiten aproximar fenomenos complejos, pero dependen de datos confiables, tolerancias y estabilidad numerica.</p>
+        </header>
+        <div class="cards two">
+          <article class="card"><h3>Alcance</h3><p>La web permite estimar posicion, trayectoria, distancia, equilibrio termico, descenso y propagacion social con datos modificables.</p></article>
+          <article class="card"><h3>Limitaciones</h3><p>El modelo no prueba origen extraterrestre. Solo analiza consistencia matematica de datos observados y su sensibilidad.</p></article>
+        </div>
+        <div class="panel">
+          <h3>Autoevaluacion</h3>
+          <div class="table-wrap">
+            <table><thead><tr><th>Criterio</th><th>Estado</th></tr></thead><tbody><tr><td>Formularios interactivos</td><td>Cumplido</td></tr><tr><td>Tablas y graficas</td><td>Cumplido</td></tr><tr><td>Casos obligatorios</td><td>Cumplido</td></tr><tr><td>Arquitectura separada</td><td>Cumplido</td></tr><tr><td>Diseno responsivo</td><td>Cumplido</td></tr></tbody></table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="js/metodos.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
