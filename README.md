@@ -606,7 +606,7 @@ git init
 git add .
 git commit -m "desafio final fani numerico"
 git branch -M main
-git remote add origin https://github.com/USUARIO/control-fani-numerico.git
+git remote add origin https://github.com/HAjiMe-0/control-fani-numerico
 git push -u origin main
 ```
 
@@ -672,78 +672,13 @@ El archivo `vercel.json` ayuda a que Vercel sirva correctamente el archivo princ
 
 ---
 
-## 25. Posibles mejoras futuras
-
-- Agregar autenticacion para usuarios evaluadores.
-- Guardar simulaciones en una base de datos.
-- Exportar resultados en PDF.
-- Permitir carga de datos desde archivos CSV.
-- Incluir mas metodos numericos, como Newton interpolante, splines cubicos o gradiente conjugado.
-- Agregar visualizacion 3D de la trayectoria.
-- Comparar errores entre varios metodos en una sola grafica.
-- Implementar modo claro y oscuro.
-- Agregar historial de pruebas ejecutadas.
-
----
-
-## 26. Guia rapida para exposicion
-
-### Introduccion
-
-Este proyecto es una plataforma web interactiva que aplica metodos numericos al analisis de un escenario FANI. La idea central es usar un contexto aeroespacial para demostrar como la matematica aplicada permite resolver problemas de localizacion, trayectoria, desplazamiento y estabilidad.
-
-### Explicacion de la interfaz
-
-La pagina esta dividida en modulos. Cada modulo tiene su formulario de datos, boton de ejecucion, resultados numericos, tabla y grafica. Esto permite que el evaluador pruebe cada metodo sin abrir la consola del navegador.
-
-### Explicacion de los metodos
-
-Se usaron sistemas lineales para radar, raices para equilibrio termico, interpolacion para reconstruir trayectorias, integracion para calcular desplazamiento, EDO para simular descenso, numero de condicion para estabilidad y RK4 para el modelo social.
-
-### Cierre
-
-El proyecto demuestra que los metodos numericos no solo sirven para ejercicios teoricos, sino tambien para construir simuladores capaces de analizar datos, comparar escenarios y generar interpretaciones tecnicas.
-
----
-
-## 27. Ficha de entrega sugerida
+## 25. Autor
 
 ```txt
-Titulo del proyecto: Sistema Interactivo de Simulacion y Analisis FANI
-
-Enlace de la pagina web publicada:
-https://TU-ENLACE.vercel.app
-
-Enlace del repositorio Git:
-https://github.com/TU-USUARIO/control-fani-numerico
-
-Datos del estudiante:
-Apellidos, Nombre
-```
-
----
-
-## 28. Conclusiones academicas
-
-El desarrollo de este proyecto permite comprobar la importancia de los metodos numericos en la solucion aproximada de problemas complejos. A traves de la triangulacion por radar, se observa que los sistemas lineales pueden utilizarse para estimar posiciones espaciales. Mediante los metodos de raices, se identifican puntos de equilibrio que no siempre pueden obtenerse de forma directa. Con la interpolacion, se reconstruyen valores intermedios a partir de datos discretos, mientras que con la integracion numerica se obtiene una magnitud acumulada a partir de una funcion variable.
-
-La simulacion con ecuaciones diferenciales ordinarias muestra como una variable fisica puede cambiar en el tiempo bajo ciertas condiciones. Ademas, el analisis del numero de condicion evidencia que resolver un sistema no es suficiente si no se estudia tambien su estabilidad frente a perturbaciones. Finalmente, el modelo social permite extender la idea de simulacion numerica hacia fenomenos colectivos, demostrando que los metodos matematicos pueden aplicarse tanto a contextos fisicos como sociales.
-
-Como resultado, la pagina web cumple una funcion academica doble: por una parte, implementa algoritmos numericos; por otra, permite que el usuario interactue con ellos, observe los resultados y comprenda sus alcances y limitaciones.
-
----
-
-## 29. Autor
-
-```txt
-Nombre del estudiante: completar
+Nombre del estudiante: Harold Ruddy Quispe Hilari
 Carrera: Informatica
 Materia: Metodos Numericos
 Universidad: Universidad Mayor de San Andres
 ```
 
 ---
-
-## 30. Licencia academica
-
-Este proyecto fue elaborado con fines educativos para la materia de Metodos Numericos. Puede ser modificado, mejorado y adaptado para exposiciones, practicas universitarias o proyectos de aprendizaje.
